@@ -1,0 +1,16 @@
+# Load severity data with error handling
+def getSeverityDict():
+    global severityDictionary
+    with open('MasterData/symptom_severity.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        for row in csv_reader:
+            # Check if the row has at least two columns to prevent index errors
+            if len(row) < 2:
+                print(f"Skipping invalid row: {row}")
+                continue  # Skip rows that do not have the required number of columns
+            try:
+                # Try to parse the severity value as an integer
+                severityDictionary[row[0]] = int(row[1])
+            except ValueError:
+                # Handle the case where the severity value is not an integer
+                print(f"Invalid severity value for {row[0]}: {row[1]}")
