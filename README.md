@@ -72,6 +72,7 @@ For example, if users ask about symptoms or treatments for diseases, we will com
 If the chatbot gives mostly correct answers, it means it is accurate.
 
 Precision and Recall:
+
 1.Precision will check how often the chatbot’s answers are useful and correct compared to all the answers it gives. 
 For instance, if the chatbot suggests ways to prevent diseases, precision will see how many of these suggestions are right.
 2.Recall will look at how well the chatbot covers all the important health topics.
