@@ -83,6 +83,18 @@ We will look for fewer cases of preventable diseases and more health check-ups a
 If these health indicators improve, it shows the chatbot is helping people stay healthier.
 
 ## Time Series Analysis
+
+Time series analysis will be applied to monitor changes in health outcomes over time. This analysis will involve collecting
+and analysing data on healthcare-related events, such as the prevalence of certain diseases or the frequency of specific
+symptoms over time.
+
+Additionally, time series data on user engagement and health literacy levels will be used to assess the long-term impact 
+of the AI solution. This will allow for the identification of seasonal or periodic trends in health behaviours,
+enabling proactive adjustments to the educational content.
+
+Also ensuring that the information provided by the application is not only accurate but also contextually relevant,
+enhancing its effectiveness in improving public health outcomes.
+
 ## Solution Techniques
 ## Natural Language Processing, Speech Recognition, or Speech Synthesis
 ## Deep Learning
