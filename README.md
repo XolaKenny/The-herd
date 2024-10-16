@@ -63,6 +63,25 @@ This model will be deployed in the mobile application, optimized for performance
 
 ## Data
 ## Model Evaluation
+
+Model Evaluation
+
+To make sure our AI chatbot is working well and helping people in rural South Africa with healthcare education, we will check its performance using a few important measures:
+Accuracy: We will see how often the chatbot gives the right answers to health questions.
+For example, if users ask about symptoms or treatments for diseases, we will compare the chatbot’s responses to trusted medical information. 
+If the chatbot gives mostly correct answers, it means it is accurate.
+
+Precision and Recall:
+1.Precision will check how often the chatbot’s answers are useful and correct compared to all the answers it gives. 
+For instance, if the chatbot suggests ways to prevent diseases, precision will see how many of these suggestions are right.
+2.Recall will look at how well the chatbot covers all the important health topics.
+We want to make sure the chatbot answers a wide range of questions without missing important details.
+User Satisfaction: We will ask users for their opinions on the chatbot. 
+We will find out if they think the information is helpful, easy to understand, and relevant to their health needs. If users are happy with the chatbot, it means it is doing a good job.
+Health Outcome Improvements: Over time, we will track changes in the community’s health to see if the chatbot is making a difference. 
+We will look for fewer cases of preventable diseases and more health check-ups and vaccinations. 
+If these health indicators improve, it shows the chatbot is helping people stay healthier.
+
 ## Time Series Analysis
 ## Solution Techniques
 ## Natural Language Processing, Speech Recognition, or Speech Synthesis
