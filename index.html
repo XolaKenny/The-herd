@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedQuadChatBot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: grey;
+            margin: 0;
+            padding: 0;
+        }
+        .chatbox {
+            width: 400px;
+            margin: 100px auto;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.9); 
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .chat-history {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+        }
+        .message {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .message .icon {
+            margin-right: 10px;
+        }
+        .user-message .icon {
+            color: blue;
+        }
+        .bot-response .icon {
+            color: green;
+        }
+        .input-container {
+            display: flex;
+            margin-top: 10px;
+        }
+        #user-input {
+            width: calc(100% - 90px);
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .voice-button, .submit-button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="chatbox">
+        <h2>MedQuad ChatBot</h2>
+        <div id="chat-history" class="chat-history">
+
+        </div>
+        <form id="chat-form">
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Type your message...">
+                <input type="submit" value="Send" class="submit-button">
+                <button id="voice-button" class="voice-button">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#chat-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                const userMessage = $('#user-input').val();
+                if (!userMessage.trim()) {
+                    return;  
+                }
+
+                sendMessage(userMessage);
+            });
+
+       
+            const voiceButton = document.getElementById('voice-button');
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            voiceButton.addEventListener('click', function() {
+                recognition.start();
+            });
+
+            recognition.onresult = function(event) {
+                const voiceMessage = event.results[0][0].transcript;
+                $('#user-input').val(voiceMessage);
+                sendMessage(voiceMessage);
+            };
+
+            function sendMessage(userMessage) {
+             
+                $('#chat-history').append(
+                    '<div class="message user-message">' +
+                        '<i class="fas fa-user icon"></i>' +
+                        '<div><strong>You:</strong> ' + userMessage + '</div>' +
+                    '</div>'
+                );
+
+                $('#chat-history').scrollTop($('#chat-history')[0].scrollHeight);
+
+                // Clear the input field
+                $('#user-input').val('');
+
+       
+                $.ajax({
+                    url: '/get_response',
+                    method: 'POST',
+                    data: { message: userMessage },
+                    success: function(response) {
+                      
+                        $('#chat-history').append(
+                            '<div class="message bot-response">' +
+                                '<i class="fas fa-robot icon"></i>' +
+                                '<div><strong>MedQuad:</strong> ' + response.response + '</div>' +
+                            '</div>'
+                        );
+
+                    
+                        $('#chat-history').scrollTop($('#chat-history')[0].scrollHeight);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
