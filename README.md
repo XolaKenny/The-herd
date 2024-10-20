@@ -1,4 +1,4 @@
-K# The-herd
+ The-herd
 Welcome to the The-herd Read-me!
 
 # AI for Health Education and Awareness: mobile applications and chatbots can be used to educate rural
